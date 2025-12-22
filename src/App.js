@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { Fragment } from "react";
 
-function App() {
+export default function App() {
+  // const divContent = '标签内容';
+  const divTitle = '标签标题';
+
+  const flag = false;
+  let divContent = null;
+  if (flag) {
+    divContent = <span>flag为true</span>;
+  } else {
+    divContent = <p>flag为false</p>;
+  }
+
+  const list = [
+    { id: 1, name: '小吴' },
+    { id: 1, name: '小李' },
+    { id: 1, name: '小花' },
+  ]
+  const listContent = list.map(item => (
+    <Fragment key={item.id}>
+      <li >{item.name}</li>
+      <li>…………………………</li>
+    </Fragment>
+  ));
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <ul>{listContent}</ul>
   );
 }
 
-export default App;
+// export default App;
