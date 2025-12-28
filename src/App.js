@@ -1,59 +1,37 @@
-// import { Fragment } from "react/jsx-runtime";
-
-import { useState } from "react";
-
-
-
-export default function App() {
-  // const divContent = '标签内容';
-  // const divTitle = '标签标题';
-
-  // const flag = false;
-  // let divContent = null;
-  // if (flag) {
-  //   divContent = <span>flag为true</span>;
-  // } else {
-  //   divContent = <p>flag为false</p>;
-  // }
-
-  // const list = [
-  // { id: 1, name: '小吴' },
-  // { id: 2, name: '小李' },
-  // { id: 3, name: '小花' },
-  // ]
-  // const listContent = list.map(item => (
-  //   <Fragment key={item.id}>
-  //     <li >{item.name}</li>
-  //     <li>…………………………</li>
-  //   </Fragment>
-  // ));
-  // const [content, setContent] = useState('标签的默认内容');
-
-  const [data, setData] = useState([
-    { id: 1, name: '小吴' },
-    { id: 2, name: '小李' },
-    { id: 3, name: '小花' }
-  ])
-
-  const listData = data.map(item =>
-    <li key={item.id}>{item.name}</li>
-  )
-
-  const handleClick = () => {
-    setData(data.filter(item => item.id !== 2));
-  }
-
+function List({ cshildren, title, footer = <div>默认底部</div> }) {
   return (
-    // <div title={divTitle}>
-    //   {divContent}
-    // </div>
-
-    // <ul>{listContent}</ul>
     <>
-      <ul>{listData}</ul>
-      <button onClick={handleClick}>按钮</button>
+      <h2>{title}</h2>
+      <ul>
+        {cshildren}
+      </ul>
+      {footer}
     </>
   );
 }
-
-// export default App;
+export default function App() {
+  return (
+    <>
+      <List
+        title="列表1"
+        footer={<p>这是底部内容1</p>}>
+        <li>内容1</li>
+        <li>内容2</li>
+        <li>内容3</li>
+      </List>
+      <List
+        title="列表2"
+        footer={<p>这是底部内容2</p>}>
+        <li>内容A</li>
+        <li>内容B</li>
+        <li>内容C</li>
+      </List>
+      <List
+        title="列表3">
+        <li>内容X</li>
+        <li>内容Y</li>
+        <li>内容Z</li>
+      </List>
+    </>
+  );
+}
